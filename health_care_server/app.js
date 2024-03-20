@@ -9,7 +9,6 @@ const cors = require("cors");
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
-//just a bolierplate code, tells our express server to add the user submitted data to request object.
 app.use(express.json());
 app.use(
   fileUpload({
@@ -27,7 +26,6 @@ app.use(
 app.use(cors());
 
 app.set("views", "views");
-
 
 app.use("/api", router);
 module.exports = app;

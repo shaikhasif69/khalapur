@@ -38,7 +38,7 @@ router.get("/session/getLatestSessionOfParticularPatient/:patientId", sessionCon
 
 //client side rendering
 router.get("/", doctorsController.displayDashboard)
-router.get("/doctor/add-doctor-page", doctorsController.addDoctorPage)
+router.get("/doctor/add-doctor-page", doctorsController.addAppointmentPage)
 
 // Define an API endpoint to serve files from the specified folder
 

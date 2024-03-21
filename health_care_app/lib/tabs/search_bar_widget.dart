@@ -29,8 +29,8 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
         width: double.maxFinite,
         decoration: BoxDecoration(
             border:
-                Border.all(color: AppConstants.sleepColor, width: 1),
-            color: AppConstants.sleepColor,
+                Border.all(color: Colors.white, width: 2),
+            color: AppConstants.lightColor,
             borderRadius: BorderRadius.circular(20)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,

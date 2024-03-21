@@ -149,7 +149,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.white),
                       height: 50,
                       width: MediaQuery.of(context).size.width,
-                      child: Center(child: Text("Medical History")),
+                      child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+
+                        children: [
+                          Expanded(child: Center(child: Text("Medical History", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),))),
+                          Text("see all"), 
+                          SizedBox(width: 10,),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 12.0),
+                            child: Icon(Icons.view_agenda_outlined),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   Padding(

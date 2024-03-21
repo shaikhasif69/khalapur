@@ -1,9 +1,16 @@
 const router = require("express").Router();
 const doctorsController = require("./controllers/doctorController")
-// // ? Authentication module
+const patientController = require("./controllers/patientController")
+// Doctors
 router.post("/doctor/add-doctor", doctorsController.addDoctor)
 router.get("/doctor/get-all-doctors", doctorsController.getAllDoctors)
 router.get('/doctor/get-single-doctor/:doctorId', doctorsController.getDoctorById)
+
+
+// Patients
+
+router.post("/patient/add-patient", patientController.addPatient)
+router.get("/patient/get-all-patients", patientController.getAllPatients)
 // // Create a new account, and segregating based on the roles
 // router.post("/account/signUp", accountController.signUp);
 

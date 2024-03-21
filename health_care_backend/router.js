@@ -2,6 +2,9 @@ const router = require("express").Router();
 const doctorsController = require("./controllers/doctorController")
 const patientController = require("./controllers/patientController")
 const appointmentController = require("./controllers/appointmentController")
+const sessionController = require("./controllers/sessionController")
+const axios = require("axios")
+require("dotenv").config()
 // Doctors
 router.post("/doctor/add-doctor", doctorsController.addDoctor)
 router.get("/doctor/get-all-doctors", doctorsController.getAllDoctors)
@@ -21,6 +24,24 @@ router.get("/appointment/getAppointmentsByStatus/:status", appointmentController
 router.get("/appointment/getAppointmentByDoctorId/:doctorId", appointmentController.getAppointmentsByDoctorId)
 router.get("/appointment/getAppointmentByPatientId/:patientId", appointmentController.getAppointmentsByPatientId)
 router.post("/appointment/complete-appointment", appointmentController.closeAppointment)
+
+//ocr
+
+
+//Session
+
+router.post("/session/add-session", sessionController.addSession);
+router.get("/session/getSessionById/:sessionId", sessionController.getSessionById);
+router.get("/session/getAllSessionOfParticularPatient/:patientId", sessionController.getAllSessionOfParticularPatient);
+
+router.get("/session/getLatestSessionOfParticularPatient/:patientId", sessionController.getLatestSessionOfParticularPatient);
+
+//client side rendering
+router.get("/", doctorsController.displayDashboard)
+router.get("/doctor/add-doctor-page", doctorsController.addAppointmentPage)
+
+// Define an API endpoint to serve files from the specified folder
+
 // // Create a new account, and segregating based on the roles
 // router.post("/account/signUp", accountController.signUp);
 

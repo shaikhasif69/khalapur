@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:health_care_app/pages/home_screen.dart';
 import 'package:health_care_app/services/auth_services.dart';
 
-import '../pages/home_view.dart';
 
 class AuthNotifier extends StateNotifier<bool> {
   final AuthServices _authServices;
@@ -17,7 +17,7 @@ class AuthNotifier extends StateNotifier<bool> {
       state = true;
       await _authServices.login(email: email, password: password).then((value) {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const HomeView()));
+            .push(MaterialPageRoute(builder: (context) => const  HomeScreen()));
       });
       state = false;
     } catch (e) {

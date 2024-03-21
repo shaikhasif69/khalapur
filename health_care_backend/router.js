@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const doctorsController = require("./controllers/doctorController")
 const patientController = require("./controllers/patientController")
+const appointmentController = require("./controllers/appointmentController")
 // Doctors
 router.post("/doctor/add-doctor", doctorsController.addDoctor)
 router.get("/doctor/get-all-doctors", doctorsController.getAllDoctors)
@@ -11,6 +12,15 @@ router.get('/doctor/get-single-doctor/:doctorId', doctorsController.getDoctorByI
 
 router.post("/patient/add-patient", patientController.addPatient)
 router.get("/patient/get-all-patients", patientController.getAllPatients)
+
+//Appointment
+router.post("/appointment/add-appointment", appointmentController.addAppointment)
+router.get("/appointment/get-all-appointments", appointmentController.getAllAppointments)
+router.post("/appointment/get-single-appointment/:appointmentId", appointmentController.getAppointmentById)
+router.get("/appointment/getAppointmentsByStatus/:status", appointmentController.getAppointmentsByStatus)
+router.get("/appointment/getAppointmentByDoctorId/:doctorId", appointmentController.getAppointmentsByDoctorId)
+router.get("/appointment/getAppointmentByPatientId/:patientId", appointmentController.getAppointmentsByPatientId)
+router.post("/appointment/complete-appointment", appointmentController.closeAppointment)
 // // Create a new account, and segregating based on the roles
 // router.post("/account/signUp", accountController.signUp);
 

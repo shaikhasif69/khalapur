@@ -4,6 +4,8 @@ import 'package:health_care_app/utils/app_constants.dart';
 import 'package:health_care_app/utils/my_timeline_tile.dart';
 import 'dart:math';
 
+import 'package:heart_bpm/heart_bpm.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -12,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   List<String> happyQuotes = [
     "Happiness is not something ready made. It comes from your own actions. - Dalai Lama",
     "The only way to be happy is to love. Unless you love, your life will flash by. - Tree of Life",
@@ -54,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isHappy = true;
   bool isSad = false;
   bool isIll = false;
+  bool isBPMEnabled = false;
   void selectQuote() {
     if (isHappy) {
       selectedQuote = happyQuotes[Random().nextInt(happyQuotes.length)];
@@ -63,6 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
       selectedQuote = illQuotes[Random().nextInt(illQuotes.length)];
     }
   }
+
+  List<SensorValue> data = [];
+  int? bpmValue;
   late AnimationController _controller;
   double _fillPercentage = 0.0;
   double calculateBMI(double height, double weight) {
@@ -84,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void dispose() {
     // TODO: implement dispose
     _controller.dispose();
-    super.dispose();    
+    super.dispose();
   }
 
   void _fillHeart() {
@@ -96,8 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
       }
       if (_fillPercentage >= 50) {
         print("what is this : " + _fillPercentage.toString());
-      } else {
-      }
+      } else {}
     });
   }
 
@@ -179,40 +183,81 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.deepPurpleAccent.shade100,
                           ),
-                        ),
-                        Positioned(
-                          top: 50,
-                          left: 8,
-                          child: GestureDetector(
-                            onTap: () {
-                              _fillHeart();
-                            },
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.blue,
+                          child: isBPMEnabled
+                              ? Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                    children: [
+                                      HeartBPMDialog(
+                                        context: context,
+                                        onRawData: (value) {
+                                          setState(() {
+                                            if (data.length == 100) {
+                                              print("here!!!!");
+                                              data.removeAt(0);
+                                            }
+                                            print('this is value: ' +
+                                                value.toString());
+                                            data.add(value);
+                                          });
+                                        },
+                                        onBPM: (value) => setState(() {
+                                          bpmValue = value;
+                                        }),
+                                      ),
+                                      SizedBox(width: 20,),
+                                      Text(
+                                        bpmValue?.toString() ?? "-",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displayLarge
+                                            ?.copyWith(
+                                                fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ],
+                                  ),
+                              )
+                              : Padding(
+                                padding: const EdgeInsets.only(left: 15.0, top: 12.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Text("Put One ", style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),) , 
+                                        Icon(Icons.fingerprint_outlined, size: 60, )
+                                      ],
+                                    ),
+                                    Text("On Camera", style: TextStyle(fontSize: 26),)
+                                  ],
+                                ),
                               ),
-                              child: Icon(Icons.add),
-                            ),
-                          ),
+
                         ),
                         Positioned(
                           top: 50,
                           right: 8,
                           child: GestureDetector(
                             onTap: () {
-                              _fillHeart();
+                              setState(() {
+                                if (isBPMEnabled) {
+                                  isBPMEnabled = false;
+                                  // dialog.
+                                } else
+                                  isBPMEnabled = true;
+                              });
                             },
                             child: Container(
-                              width: 50,
+                              width: 150,
                               height: 50,
                               decoration: BoxDecoration(
-                                shape: BoxShape.circle,
+                                borderRadius: BorderRadius.circular(20),
                                 color: Colors.blue,
                               ),
-                              child: Icon(Icons.add),
+                              child: isBPMEnabled ? Center(child: Text("Stop Measurement")): Center(child: Text("Start Measurement")),
                             ),
                           ),
                         ),

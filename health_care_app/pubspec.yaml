@@ -52,6 +52,9 @@ dependencies:
   font_awesome_flutter: ^10.7.0
   firebase_messaging: ^14.7.20
   flutter_local_notifications: ^17.0.0
+  line_awesome_flutter: ^2.0.0
+  heart_bpm: ^2.0.0+0
+  camera: ^0.10.5+9
 
 dev_dependencies:
   flutter_test:

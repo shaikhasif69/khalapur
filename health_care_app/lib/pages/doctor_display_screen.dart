@@ -17,7 +17,7 @@ class DoctorDisplayScreen extends StatefulWidget {
 }
 
 class _DoctorDisplayScreenState extends State<DoctorDisplayScreen> {
-  Future<List<Doctor>> allDoctors = Doctors.getAllDoctors(); // Corrected type
+  Future<List<Doctor>> allDoctors = Doctors.getAllDoctors(); 
   Future<dynamic> topRatedDoctors = Doctors.getTopRatedDoctors();
 
   @override
@@ -102,35 +102,7 @@ class _DoctorDisplayScreenState extends State<DoctorDisplayScreen> {
               const SizedBox(
                 height: 25,
               ),
-              // padded(
-              //   Container(
-              //     height: MediaQuery.of(context).size.height / 2.4,
-              //     width: MediaQuery.of(context).size.width,
-              //     decoration: BoxDecoration(
-              //         borderRadius: BorderRadius.circular(20),
-              //         color: Colors.white),
-              //     child: GridView(
-              //       physics: NeverScrollableScrollPhysics(),
-              //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //           crossAxisCount: 2,
-              //           mainAxisSpacing: 3,
-              //           mainAxisExtent: 190,
-              //           crossAxisSpacing: 0),
-              //       children: [
-              //         RollCard(
-              //           fieldName: "Cardiology",
-              //         ),
-              //         RollCard(
-              //           fieldName: "Neurology",
-              //         ),
-              //         RollCard(
-              //           fieldName: "Physiology",
-              //         ),
-              //         RollCard(fieldName: "Phychology",)
-              //       ],
-              //     ),
-              //   ),
-              // ),
+      
               padded(
                 Row(
                   children: [
@@ -262,22 +234,27 @@ class _DoctorDisplayScreenState extends State<DoctorDisplayScreen> {
                   height: 160,
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 Text(
                   doctor.doctorName,
-                  style: const TextStyle(fontSize: 15),
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Text(
-                    doctor.doctorQualification,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                  child: Row(
+                    children: [
+                      Text("Qualification: "),
+                      Text(
+                        doctor.doctorQualification,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
                 ),
                 Text(
                   '${doctor.doctorSpecialization}',
-                  style: const TextStyle(color: Colors.deepPurple),
+                  style: const TextStyle(color: Colors.deepPurple, fontSize: 22),
                 )
               ],
             ),

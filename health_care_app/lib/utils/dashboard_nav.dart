@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_care_app/utils/app_constants.dart';
 import '../pages/doctor_display_screen.dart';
 import '../pages/home_screen.dart';
+import '../pages/profile_pages.dart';
 
 class UserDashBoard extends StatefulWidget {
   const UserDashBoard({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _UserDashBoardState extends State<UserDashBoard> {
   final tabs = [
     HomeScreen(),
     DoctorDisplayScreen(),
-    HomeScreen(),
+    ProfileScreen(),
     HomeScreen(),
     // Add other pages here
   ];

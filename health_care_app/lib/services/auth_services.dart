@@ -10,7 +10,6 @@ class AuthServices {
   static const String userEmailKey = 'userEmail';
   static const String userWeightKey = 'userWeight';
   static const String userDissKey = 'userDiss';
-  static const String userGenDisKey = 'userGenDis';
   static const String userBloodKey = 'userBook';
   static const String userOtherDisKey = 'userOtherDis';
   static const String isLoggedInKey = 'isLoggedIn';
@@ -41,7 +40,6 @@ class AuthServices {
         prefs.setString(userEmailKey, userData['patientEmail']);
         prefs.setString(userWeightKey, userData['weight']);
         prefs.setString(userDissKey, userData['disability']);
-        prefs.setString(userGenDisKey, userData['geneticDisorder']);
         prefs.setString(userOtherDisKey, userData['otherDisease']);
         prefs.setString(userBloodKey, userData['bloodGroup']);
         

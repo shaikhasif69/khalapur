@@ -48,12 +48,19 @@ Appointment.prototype.getAppointmentsByDoctorId = async function (doctorId) {
     return data;
 
 }
+Appointment.prototype.getAppointmentByDoctorIdAndStatus = async function (doctorId, appointmentStatus) {
+    let data = await appointmentsCollection.find({ doctorId: new ObjectID(doctorId), appointmentStatus: appointmentStatus }).toArray();
+    return data;
+
+}
 Appointment.prototype.getAppointmentsByPatientId = async function (patientId) {
     let data = await appointmentsCollection.find({ patientId: new ObjectID(patientId) }).toArray();
     return data;
 }
 Appointment.prototype.closeAppointment = async function (appointmentId) {
     let data = await appointmentsCollection.findOneAndUpdate({ _id: new ObjectID(appointmentId) }, { $set: { appointmentStatus: "completed" } });
+    let doc = await appointmentsCollection.findOne({ _id: new ObjectID(appointmentId) });
+    console.log(doc);
     return data;
 }
 

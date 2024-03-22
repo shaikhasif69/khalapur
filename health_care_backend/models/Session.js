@@ -16,7 +16,12 @@ Session.prototype.cleanUp = function () {
         reports: this.data.reports,
         reportLinks: this.data.reportLinks,
         revisitAdvice: this.data.revisitAdvice,
+        weight: this.data.weight,
+        bloodGroup: this.data.bloodGroup,
+        mainCause: this.data.mainCause,
 
+        eatingAdvisory: "No advisory",
+        exerciseAdvisory: "No advisory",
         createdDate: new Date(),
     };
 };
@@ -39,10 +44,38 @@ Session.prototype.getSessionById = async function (sessionId) {
 }
 
 
+// Session.prototype.getAllSessionOfParticularPatient = async function (patientId) {
+//     let data = await sessionCollection.find({ patientId: new ObjectID(patientId) }).sort({ createdDate: -1 }).toArray();
+//     return data;
+// }
+// Assuming sessionCollection and doctorCollection are your MongoDB collections
+// Assuming you have the MongoDB client initialized and connected to your database
+
 Session.prototype.getAllSessionOfParticularPatient = async function (patientId) {
-    let data = await doctorsCollection.find({ patientId: new ObjectID(patientId) }).toArray();
-    return data;
+    try {
+        const data = await sessionCollection.aggregate([
+            { $match: { patientId: new ObjectID(patientId) } },
+            { $sort: { createdDate: -1 } },
+            {
+                $lookup: {
+                    from: 'doctors', // Name of the doctor collection
+                    localField: 'doctorId',
+                    foreignField: '_id',
+                    as: 'doctor'
+                }
+            },
+            { $unwind: '$doctor' }, // Unwind the array produced by the lookup
+
+        ]).toArray();
+
+        return data;
+    } catch (error) {
+        console.error('Error fetching sessions with doctor names:', error);
+        throw error;
+    }
 }
+
+
 Session.prototype.getLatestSessionOfParticularPatient = async function (patientId) {
     // Assuming doctorsCollection is your MongoDB collection reference
 
@@ -54,6 +87,7 @@ Session.prototype.getLatestSessionOfParticularPatient = async function (patientI
 }
 Session.prototype.updateSessionDoc = async function (sessionId, ocrResult) {
     let data = await sessionCollection.updateOne({ _id: new ObjectID(sessionId) }, { $set: { reports: ocrResult } });
-    return data;
+    let doc = await sessionCollection.findOne({ _id: new ObjectID(sessionId) });
+    return doc;
 }
 module.exports = Session;

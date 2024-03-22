@@ -10,11 +10,11 @@ class AuthServices {
   static const String userEmailKey = 'userEmail';
   static const String userWeightKey = 'userWeight';
   static const String userDissKey = 'userDiss';
-  static const String userGenDisKey = 'userGenDis';
   static const String userBloodKey = 'userBook';
   static const String userOtherDisKey = 'userOtherDis';
   static const String isLoggedInKey = 'isLoggedIn';
   static const String bookedDoctorsKey = 'bookedDoctors';
+  static const String userGenDisKey = 'userGenDisKey';
   static Future<UserModel?> loginUser(String email, String password) async {
     try {
       final String apiUrl = 'http://192.168.119.85:4000/patient/login';

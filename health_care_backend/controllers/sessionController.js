@@ -1,4 +1,5 @@
 let Session = require("../models/Session");
+let Appointment = require("../models/Appointment");
 const fs = require("fs");
 const path = require("path");
 const axios = require("axios");
@@ -8,7 +9,7 @@ exports.addSession = async (req, res) => {
         console.log(req.files);
         if (req.files) {
             if (req.files.reportLinks) {
-                console.log(req.files);
+                console.log(req.files.reportLinks);
                 console.log("Filesss milaaaa");
                 if (Array.isArray(req.files.reportLinks)) {
                     let files = req.files.reportLinks;
@@ -53,8 +54,12 @@ exports.addSession = async (req, res) => {
         console.log(ocrResult.data);
 
         let result = await session.updateSessionDoc(response.data._id, JSON.parse(ocrResult.data));
-        // res.json(result.data);
-        res.status(200).json(result)
+        let appointment = new Appointment()
+        let d = await appointment.closeAppointment(result.appointmentId);
+        console.log(result);
+        console.log(d);
+
+        res.status(200).redirect("/doctor/displayAppointmentsPage")
     } catch (e) {
         console.log(e);
         return res.status(500).json({ message: "Internal Server Error", error: e });

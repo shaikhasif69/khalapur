@@ -14,14 +14,16 @@ router.get('/doctor/get-single-doctor/:doctorId', doctorsController.getDoctorByI
 // Patients
 
 router.post("/patient/add-patient", patientController.addPatient)
+router.post("/patient/login", patientController.login)
 router.get("/patient/get-all-patients", patientController.getAllPatients)
-
+router.get("/patient/get-health-records/:patientId", patientController.getHealthRecords)
 //Appointment
 router.post("/appointment/add-appointment", appointmentController.addAppointment)
 router.get("/appointment/get-all-appointments", appointmentController.getAllAppointments)
 router.post("/appointment/get-single-appointment/:appointmentId", appointmentController.getAppointmentById)
 router.get("/appointment/getAppointmentsByStatus/:status", appointmentController.getAppointmentsByStatus)
 router.get("/appointment/getAppointmentByDoctorId/:doctorId", appointmentController.getAppointmentsByDoctorId)
+router.get("/appointment/getAppointmentByDoctorIdAndStatus/:doctorId/:status", appointmentController.getAppointmentByDoctorIdAndStatus)
 router.get("/appointment/getAppointmentByPatientId/:patientId", appointmentController.getAppointmentsByPatientId)
 router.post("/appointment/complete-appointment", appointmentController.closeAppointment)
 
@@ -38,8 +40,26 @@ router.get("/session/getLatestSessionOfParticularPatient/:patientId", sessionCon
 
 //client side rendering
 router.get("/", doctorsController.displayDashboard)
-router.get("/doctor/add-doctor-page", doctorsController.addAppointmentPage)
+router.get("/doctor/displayAppointmentsPage", doctorsController.displayAppointmentsPage)
+router.get("/displayReportGenPage/:appointmentId/:doctorId/:patientId", doctorsController.displayReportGenPage)
 
+
+// doctor ai
+
+router.post("/doctor-ai", async (req, res) => {
+    console.log("Hit");
+    let response = await axios.post("http://192.168.119.104:8080/doctorAI/", {
+        "patientData": req.body.patientData,
+        "question": req.body.question
+    });
+    res.status(200).json(response.data);
+})
+
+//medicine alternative 
+router.get("/medicine-alternative", async (req, res) => {
+    res.render("medicine-alternative-checker.ejs")
+})
+router.post("/medicine-alternative", async (req, res) => { })
 // Define an API endpoint to serve files from the specified folder
 
 // // Create a new account, and segregating based on the roles

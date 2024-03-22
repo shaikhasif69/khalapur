@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health_care_app/firebase_api.dart';
 import 'package:health_care_app/firebase_options.dart';
 import 'package:health_care_app/pages/register.dart';
@@ -14,7 +15,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await FirebaseApi().initializeFirebaseNotifications();
-  runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 final navigatorKey = GlobalKey<NavigatorState>();

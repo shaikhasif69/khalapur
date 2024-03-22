@@ -3,7 +3,7 @@ import 'package:health_care_app/services/doctors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import '../models/DoctorModel.dart';
-import '../tabs/doctors_list.dart';
+// import '../tabs/doctors_list.dart';
 import '../tabs/search_bar_widget.dart';
 import '../utils/app_constants.dart';
 import '../utils/top_rated_doctors.dart';
@@ -22,7 +22,6 @@ class _DoctorDisplayScreenState extends State<DoctorDisplayScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.grey[100],
@@ -276,7 +275,6 @@ class RollCard extends StatefulWidget {
 class _RollCardState extends State<RollCard> {
   List imagesPath = [
     "assets/heart.png",
-
   ];
   @override
   Widget build(BuildContext context) {

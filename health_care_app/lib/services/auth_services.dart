@@ -14,6 +14,7 @@ class AuthServices {
   static const String userOtherDisKey = 'userOtherDis';
   static const String isLoggedInKey = 'isLoggedIn';
   static const String bookedDoctorsKey = 'bookedDoctors';
+  static const String userGenDisKey = 'userGenDisKey';
   static Future<UserModel?> loginUser(String email, String password) async {
     try {
       final String apiUrl = 'http://192.168.119.85:4000/patient/login';
@@ -40,9 +41,10 @@ class AuthServices {
         prefs.setString(userEmailKey, userData['patientEmail']);
         prefs.setString(userWeightKey, userData['weight']);
         prefs.setString(userDissKey, userData['disability']);
+        prefs.setBool(userGenDisKey, userData['geneticDisorder']);
         prefs.setString(userOtherDisKey, userData['otherDisease']);
         prefs.setString(userBloodKey, userData['bloodGroup']);
-        
+
         prefs.setBool(isLoggedInKey, true);
         print("m i lovable? ");
         return UserModel(

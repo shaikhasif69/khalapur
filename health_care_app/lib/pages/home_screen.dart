@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_care_app/pages/AllAppoinments.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:health_care_app/utils/app_constants.dart';
 import 'package:health_care_app/utils/my_timeline_tile.dart';
@@ -118,10 +119,10 @@ class _HomeScreenState extends State<HomeScreen> {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(
@@ -580,31 +581,60 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(20),
                           color: Colors.white),
-                      height: 50,
+                      // height: MediaQuery.of(context).size.height / 2.5,
                       width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        MedicalHistoryPage()));
+                              },
                               child: Padding(
-                            padding: const EdgeInsets.only(left: 12.0),
-                            child: Text(
-                              "Medical History",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: Colors.white),
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left: 12.0),
+                                            child: Text(
+                                                                                    "Medical History",
+                                                                                    style: TextStyle(
+                                                                                        fontSize: 18,
+                                                                                        fontWeight: FontWeight.w600),
+                                                                                  ),
+                                          )),
+                                      InkWell(child: Text("see all")),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 12.0),
+                                          child:
+                                              Icon(Icons.view_agenda_outlined),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                          )),
-                          Text("see all"),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 12.0),
-                            child: Icon(Icons.view_agenda_outlined),
-                          )
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

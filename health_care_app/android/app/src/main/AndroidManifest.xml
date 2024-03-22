@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<<<<<<< HEAD
 <uses-permission android:name="android.permission.CAMERA" />
+=======
+<uses-permission android:name="android.permission.VIBRATE"/>
+>>>>>>> 4cb2fa295623842b6f22a64743f1257ec53409bb
     <application
         android:label="health_care_app"
         android:name="${applicationName}"
@@ -43,4 +47,5 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+   
 </manifest>

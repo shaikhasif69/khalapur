@@ -56,6 +56,7 @@ class Doctors {
       print(
         "${AppConstants.IP}/get-health-records/${prefs.getString('userId')}",
       );
+      // print(prefs.getBool("isL"))
       var response = await http.post(
         Uri.parse(
           "${AppConstants.IP}/get-health-records/${prefs.getString('userId')}",

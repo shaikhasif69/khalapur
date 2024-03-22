@@ -41,10 +41,10 @@ class AuthServices {
         prefs.setString(userEmailKey, userData['patientEmail']);
         prefs.setString(userWeightKey, userData['weight']);
         prefs.setString(userDissKey, userData['disability']);
-        prefs.setString(userGenDisKey, userData['geneticDisorder']);
+        prefs.setBool(userGenDisKey, userData['geneticDisorder']);
         prefs.setString(userOtherDisKey, userData['otherDisease']);
         prefs.setString(userBloodKey, userData['bloodGroup']);
-        
+
         prefs.setBool(isLoggedInKey, true);
         print("m i lovable? ");
         return UserModel(

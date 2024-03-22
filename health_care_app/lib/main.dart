@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-=======
 import 'package:health_care_app/pages/register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
->>>>>>> fddc3387c9d8865f3c2df6e942b635c20bb9f303
 
 import 'pages/signIn.dart';
 import 'test/app_screen_time.dart';

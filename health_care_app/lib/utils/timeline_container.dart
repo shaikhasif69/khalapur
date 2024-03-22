@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TimelineContainer extends StatefulWidget {
-  const TimelineContainer({super.key});
+  final name;
+  const TimelineContainer({super.key, required this.name});
 
   @override
   State<TimelineContainer> createState() => _TimelineContainerState();
@@ -22,7 +23,7 @@ class _TimelineContainerState extends State<TimelineContainer> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Doctor Name here ",
+              widget.name,
               style: TextStyle(fontSize: 15, color: Colors.white),
             )
           ],

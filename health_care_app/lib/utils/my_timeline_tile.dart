@@ -7,10 +7,12 @@ class MyTimelineTile extends StatelessWidget {
   final bool isFirst;
   final bool isLast;
   final bool isPast;
+  final name;
   const MyTimelineTile(
       {super.key,
       required this.isFirst,
       required this.isLast,
+      required this.name,
       required this.isPast});
 
   @override
@@ -30,7 +32,9 @@ class MyTimelineTile extends StatelessWidget {
             iconStyle: IconStyle(
                 iconData: Icons.done,
                 color: isPast ? Colors.white : Colors.deepPurple.shade100)),
-        endChild: TimelineContainer(),
+        endChild: TimelineContainer(
+          name: name,
+        ),
       ),
     );
   }

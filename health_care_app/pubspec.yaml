@@ -55,6 +55,7 @@ dependencies:
   siri_wave: ^2.0.0+1
   speech_to_text: ^6.6.0
   permission_handler: ^11.3.0
+  syncfusion_flutter_pdfviewer: ^24.2.8
 
 
 dev_dependencies:

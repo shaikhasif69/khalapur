@@ -16,13 +16,21 @@ class MyTimelineTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 120,
+      height: 60,
       child: TimelineTile(
         isFirst: isFirst,
         isLast: isLast,
-        beforeLineStyle: LineStyle(color: isPast? AppConstants.primaryColor: Colors.deepPurple.shade300),
-        indicatorStyle: IndicatorStyle(width: 40, color: Colors.deepPurple.shade500,iconStyle: IconStyle(iconData: Icons.done, color: isPast ? Colors.white : Colors.deepPurple.shade100)),
-        endChild:TimelineContainer() ,
+        beforeLineStyle: LineStyle(
+            color: isPast
+                ? AppConstants.primaryColor
+                : Colors.deepPurple.shade300),
+        indicatorStyle: IndicatorStyle(
+            width: 40,
+            color: Colors.deepPurple.shade500,
+            iconStyle: IconStyle(
+                iconData: Icons.done,
+                color: isPast ? Colors.white : Colors.deepPurple.shade100)),
+        endChild: TimelineContainer(),
       ),
     );
   }

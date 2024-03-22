@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'pages/signIn.dart';
 import 'test/app_screen_time.dart';
 import 'utils/dashboard_nav.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,4 +24,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

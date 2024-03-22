@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_care_app/pages/AllAppoinments.dart';
 import 'package:health_care_app/utils/app_constants.dart';
 import 'package:health_care_app/utils/my_timeline_tile.dart';
 
@@ -20,10 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(
@@ -47,12 +48,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
                       height: 120,
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), 
-                      color: Colors.white,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          Text("Tip for the day: ", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
+                          Text(
+                            "Tip for the day: ",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w500),
+                          ),
                         ],
                       ),
                     ),
@@ -74,25 +80,37 @@ class _HomeScreenState extends State<HomeScreen> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                  color: AppConstants.myOrange,
-                                    borderRadius: BorderRadius.circular(25)
-                                  ),
+                                      color: AppConstants.myOrange,
+                                      borderRadius: BorderRadius.circular(25)),
                                   height: 150,
                                   width: 200,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Row(
                                           children: [
-                                            Text("Steps ", style: TextStyle(fontSize: 25),),
-                                            SizedBox(width: 15,),
-                                            Icon(Icons.run_circle_rounded, size: 70,)
+                                            Text(
+                                              "Steps ",
+                                              style: TextStyle(fontSize: 25),
+                                            ),
+                                            SizedBox(
+                                              width: 15,
+                                            ),
+                                            Icon(
+                                              Icons.run_circle_rounded,
+                                              size: 70,
+                                            )
                                           ],
                                         ),
                                       ),
-                                      Center(child: Text("8,696", style: TextStyle(fontSize: 32),))
+                                      Center(
+                                          child: Text(
+                                        "8,696",
+                                        style: TextStyle(fontSize: 32),
+                                      ))
                                     ],
                                   ),
                                 ),
@@ -102,18 +120,34 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Container(
                                   height: 70,
                                   width: 180,
-                                  decoration: BoxDecoration(color: AppConstants.lightPurple, borderRadius: BorderRadius.circular(15)),
+                                  decoration: BoxDecoration(
+                                      color: AppConstants.lightPurple,
+                                      borderRadius: BorderRadius.circular(15)),
                                   child: Column(
                                     children: [
-                                      Text("Calories burned ", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
-                                      Text("2,069", style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),)
+                                      Text(
+                                        "Calories burned ",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      Text(
+                                        "2,069",
+                                        style: TextStyle(
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.w600),
+                                      )
                                     ],
                                   ),
                                 ),
                               )
                             ],
                           ),
-                          Text("Shaikh Asif!", style: TextStyle(fontSize: 26, fontWeight: FontWeight.w500),),
+                          Text(
+                            "Shaikh Asif!",
+                            style: TextStyle(
+                                fontSize: 26, fontWeight: FontWeight.w500),
+                          ),
                           Row(
                             children: [
                               Padding(
@@ -121,15 +155,38 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Container(
                                   height: 90,
                                   width: 220,
-                                  decoration: BoxDecoration(color: AppConstants.sleepColor, borderRadius: BorderRadius.circular(20),),
-                                  child: Row(
+                                  decoration: BoxDecoration(
+                                    color: AppConstants.sleepColor,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: const Row(
                                     children: [
-                                      SizedBox(width: 10,),
-                                      Icon(Icons.bed, size: 60,),
-                                      SizedBox(width: 20,),
-                                      Text("6", style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),),
-                                      Text("h", style: TextStyle(fontSize: 18),),
-                                      Text("20", style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Icon(
+                                        Icons.bed,
+                                        size: 60,
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text(
+                                        "6",
+                                        style: TextStyle(
+                                            fontSize: 28,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      Text(
+                                        "h",
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                      Text(
+                                        "20",
+                                        style: TextStyle(
+                                            fontSize: 28,
+                                            fontWeight: FontWeight.w600),
+                                      ),
                                       Text("m")
                                     ],
                                   ),
@@ -145,50 +202,56 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.white),
-                      height: 50,
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-
-                        children: [
-                          Expanded(child: Center(child: Text("Medical History", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),))),
-                          Text("see all"), 
-                          SizedBox(width: 10,),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 12.0),
-                            child: Icon(Icons.view_agenda_outlined),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white),
-                      height: MediaQuery.of(context).size.height / 2.5,
+                      // height: MediaQuery.of(context).size.height / 2.5,
                       width: MediaQuery.of(context).size.width,
-                      child: const SingleChildScrollView(
+                      child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            MyTimelineTile(
-                                isFirst: true, isLast: false, isPast: true),
-                            MyTimelineTile(
-                                isFirst: false, isLast: false, isPast: true),
-                            MyTimelineTile(
-                                isFirst: false, isLast: false, isPast: true),
-                            MyTimelineTile(
-                                isFirst: false, isLast: false, isPast: true),
-                            MyTimelineTile(
-                                isFirst: false, isLast: false, isPast: true),
-                            MyTimelineTile(
-                                isFirst: false, isLast: false, isPast: true),
-                            MyTimelineTile(
-                                isFirst: false, isLast: true, isPast: false)
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        MedicalHistoryPage()));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: Colors.white),
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                          child: Center(
+                                              child: Text(
+                                        "Medical History",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600),
+                                      ))),
+                                      InkWell(child: Text("see all")),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 12.0),
+                                          child:
+                                              Icon(Icons.view_agenda_outlined),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),

@@ -16,12 +16,15 @@ class _TimelineContainerState extends State<TimelineContainer> {
         height: 50,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
-          color: Colors.deepPurple.shade400
-        ),
+            borderRadius: BorderRadius.circular(25),
+            color: Colors.deepPurple.shade400),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Doctor Name here ", style: TextStyle(fontSize: 22, color: Colors.white),)
+            Text(
+              "Doctor Name here ",
+              style: TextStyle(fontSize: 15, color: Colors.white),
+            )
           ],
         ),
       ),

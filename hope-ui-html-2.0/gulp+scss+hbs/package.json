@@ -22,7 +22,7 @@
     "dev": "gulp build --mini=false",
     "build": "gulp build --dev=false"
   },
-  "author": "Iqonic Design",
+  "author": "Sharp Coders",
   "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.26.14",

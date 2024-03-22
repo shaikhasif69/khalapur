@@ -48,4 +48,28 @@ Patient.prototype.getAllPatients = async function () {
     let data = await patientsCollection.find().toArray();
     return data;
 }
+
+Patient.prototype.login = async function (patientEmail, patientPassword) {
+    console.log(patientEmail, patientPassword);
+    let patient = await patientsCollection.findOne({
+        patientEmail: patientEmail,
+    });
+
+    if (!patient) {
+        return "Invalid Credentials";
+    }
+
+    let checkPassword = bcrypt.compareSync(
+        patientPassword,
+        patient.patientPassword
+    );
+
+    if (!checkPassword) {
+        console.log("Invalid");
+        return "Invalid Credentials";
+    }
+
+    return patient;
+};
+
 module.exports = Patient;

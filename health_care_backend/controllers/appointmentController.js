@@ -2,6 +2,7 @@ let Appointment = require("../models/Appointment");
 exports.addAppointment = async (req, res) => {
     try {
         const data = req.body;
+        console.log(data);
         let appointment = new Appointment(data);
         let response = await appointment.addAppointment();
         res.status(200).json(response)
@@ -49,6 +50,16 @@ exports.getAppointmentsByDoctorId = async (req, res) => {
     try {
         let appointment = new Appointment()
         let response = await appointment.getAppointmentsByDoctorId(req.params.doctorId)
+        res.status(200).json(response)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error", error: error });
+    }
+}
+exports.getAppointmentByDoctorIdAndStatus = async (req, res) => {
+    try {
+        let appointment = new Appointment()
+        let response = await appointment.getAppointmentByDoctorIdAndStatus(req.params.doctorId, req.params.status)
         res.status(200).json(response)
     } catch (error) {
         console.log(error);

@@ -56,6 +56,7 @@ exports.addSession = async (req, res) => {
         let result = await session.updateSessionDoc(response.data._id, JSON.parse(ocrResult.data));
         let appointment = new Appointment()
         let d = await appointment.closeAppointment(result.appointmentId);
+        this.sendNotifcation()
         console.log(result);
         console.log(d);
 
@@ -117,16 +118,16 @@ exports.getLatestSessionOfParticularPatient = async (req, res) => {
 //     }
 // }
 
-exports.sendNotifcation = async (req, res) => {
-    const { title, body, url, dl } = req.body;
+exports.sendNotifcation = async () => {
+    // const { title, body, url, dl } = req.body;
     try {
         headers = {
             'Authorization': `key=${process.env.FIREBASE_API_KEY}`,
             'Content-Type': 'application/json',
         };
 
-        await axios.post('https://fcm.googleapis.com/fcm/send', {
-            "to": "e0lLkFlaRAK3mhtIb2m2Op:APA91bGnoXS3jIWJQWbryb5P3gdwk-QCtiayX7PISeJ0zs8jXLikO1lgBBhi9c_ecx5WZ5UAEPElkH1m_b0DlKpm0D4HH87y5RL248tG8zXF1__ZS4nogwfbTxxethzoYkeL7a5Zy5fe",
+        let response = await axios.post('https://fcm.googleapis.com/fcm/send', {
+            "to": "fdsIFMCCQe2PrQqf-DHCb9:APA91bG6GnOwylP1B9_xRV1yxE8SJ6T2NHwnX1xGq77x64ImCyQ5LU1TpecNAfm4h41RJu3FN5BcpRPvyBc_AZRJSY1vFO2sKiLEVfCEw3goUpOmaw2auhrYELG5jHPh5JwYyAUCz6yK",
             "notification": {
                 "title": `ALERT!!`,
                 "body": `Appointment Completed and closed successfully`,
@@ -136,9 +137,9 @@ exports.sendNotifcation = async (req, res) => {
             },
             "data": { "dl": "/notification-screen" }
         }, { headers })
-        res.status(200).send("Notification sent successfully");
+        console.log(response);
     } catch (e) {
         console.log(e);
-        return res.status(500).send(error)
+
     }
 };

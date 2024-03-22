@@ -49,6 +49,8 @@ dependencies:
   transparent_image: ^2.0.1
   flutter_svg: ^2.0.10+1
   scroll_snap_list: ^0.9.1
+  firebase_messaging: ^14.7.20
+  flutter_local_notifications: ^17.0.0
 
 dev_dependencies:
   flutter_test:

@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:health_care_app/firebase_api.dart';
+import 'package:health_care_app/firebase_options.dart';
 import 'package:health_care_app/pages/register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 import 'pages/signIn.dart';
 import 'test/app_screen_time.dart';
 import 'utils/dashboard_nav.dart';
 
-void main() {
+Future<void> main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseApi().initializeFirebaseNotifications();
   runApp(const MyApp());
 }
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   _MyAppState createState() => _MyAppState();

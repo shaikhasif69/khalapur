@@ -20,8 +20,8 @@ Session.prototype.cleanUp = function () {
         bloodGroup: this.data.bloodGroup,
         mainCause: this.data.mainCause,
 
-        eatingAdvisory: this.data.eatingAdvisory,
-        exerciseAdvisory: this.data.exerciseAdvisory,
+        eatingAdvisory: "No advisory",
+        exerciseAdvisory: "No advisory",
         createdDate: new Date(),
     };
 };

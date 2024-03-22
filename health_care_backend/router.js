@@ -60,6 +60,11 @@ router.get("/medicine-alternative", async (req, res) => {
     res.render("medicine-alternative-checker.ejs")
 })
 router.post("/medicine-alternative", async (req, res) => { })
+
+
+//push
+
+
 // Define an API endpoint to serve files from the specified folder
 
 // // Create a new account, and segregating based on the roles

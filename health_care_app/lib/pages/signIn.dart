@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:health_care_app/services/auth_services.dart';
+import 'package:health_care_app/utils/dashboard_nav.dart';
+
+import '../models/UserModel.dart';
 // import 'package:health_and_doctor_appointment/screens/register.dart';
 
 // import '../mainPage.dart';
@@ -61,8 +65,8 @@ class _SignInState extends State<SignIn> {
               width: double.infinity,
               child: Container(
                 child: Image.asset(
-                  'assets/vector-doc2.jpg',
-                  scale: 3.5,
+                  'assets/myDoctor.png',
+                  scale: 0.50,
                 ),
               ),
             ),
@@ -164,7 +168,7 @@ class _SignInState extends State<SignIn> {
                   child: Text(
                     "Sign In",
                     style: GoogleFonts.lato(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
                     ),
@@ -317,18 +321,18 @@ class _SignInState extends State<SignIn> {
   }
 
   void _signInWithEmailAndPassword() async {
-    try {
-      // final User user = (await _auth.signInWithEmailAndPassword(
-      //   email: _emailController.text,
-      //   password: _passwordController.text,
-      // ))
-      //     .user;
-      // if (!user.emailVerified) {
-      //   await user.sendEmailVerification();
-      // }
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
-    } catch (e) {
+  try {
+    UserModel? user = await AuthServices.loginUser(
+      _emailController.text,
+      _passwordController.text,
+    );
+
+    if (user != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (BuildContext context) => UserDashBoard()),
+      );
+    } else {
       final snackBar = SnackBar(
         content: Row(
           children: [
@@ -340,10 +344,24 @@ class _SignInState extends State<SignIn> {
           ],
         ),
       );
-      Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
+  } catch (e) {
+    print('Error signing in: $e');
+    final snackBar = SnackBar(
+      content: Row(
+        children: [
+          Icon(
+            Icons.info_outline,
+            color: Colors.white,
+          ),
+          Text(" There was a problem signing you in"),
+        ],
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
+}
 
   void _pushPage(BuildContext context, Widget page) {
     Navigator.of(context).push(
